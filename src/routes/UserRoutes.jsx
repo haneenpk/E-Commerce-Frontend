@@ -14,8 +14,8 @@ import Home from "../pages/users/Home";
 // const Wallet = lazy(() => import("../pages/Users/Wallet"));
 
 import Login from "../pages/users/auth/Login";
-import SignUp from "../pages/Users/Auth/SignUp";
-// import OTP from "../pages/Users/Auth/OTP";
+import SignUp from "../pages/users/auth/SignUp";
+import OTP from "../pages/users/auth/VerifyOTP";
 import ErrorPage from "../pages/ErrorPage";
 
 
@@ -47,7 +47,7 @@ const UserRoutes = ({ isLoggedIn }) => {
     const authRoutes = [
         { path: "/login", element: !isLoggedIn ? <Login role={"user"} /> : navigateToHome() },
         { path: "/sign-up", element: !isLoggedIn ? <SignUp /> : navigateToHome() },
-        // { path: "/verify-otp", element: !isLoggedIn ? <OTP /> : navigateToHome() },
+        { path: "/verify-otp", element: !isLoggedIn ? <OTP /> : navigateToHome() },
     ];
 
     return (

@@ -1,9 +1,9 @@
 import { lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "../pages/admin/Dashboard";
-// const Users = lazy(() => import("../pages/Admin/Users"));
-// const Theaters = lazy(() => import("../pages/Admin/Theaters"));
-// const TheaterScreen = lazy(() => import("../pages/Theater/ListScreen"));
+const Category = lazy(() => import("../pages/admin/Category"));
+const AddCategory = lazy(() => import("../pages/admin/AddCategory"));
+const EditCategory = lazy(() => import("../pages/admin/EditCategory"));
 // const EditTheaterScreen = lazy(() => import("../pages/Theater/ViewScreen"));
 // const AddUpcomingMovie = lazy(() => import("../pages/Admin/AddUpcomingMovie"));
 // const EditUpcomingMovie = lazy(() => import("../pages/Admin/EditUpcomingMovie"));
@@ -23,9 +23,9 @@ const AdminRoutes = ({ isLoggedIn }) => {
 
     const routes = [
         { path: "/", element: isLoggedIn ? <Dashboard /> : navigateToLogin() },
-        // { path: "/users", element: isLoggedIn ? <Users /> : navigateToLogin() },
-        // { path: "/theaters", element: isLoggedIn ? <Theaters /> : navigateToLogin() },
-        // { path: "/theater-screens", element: isLoggedIn ? <TheaterScreen /> : navigateToLogin() },
+        { path: "/category", element: isLoggedIn ? <Category /> : navigateToLogin() },
+        { path: "/add-category", element: isLoggedIn ? <AddCategory /> : navigateToLogin() },
+        { path: "/edit-category", element: isLoggedIn ? <EditCategory /> : navigateToLogin() },
         // { path: "/theater-screen/edit", element: isLoggedIn ? <EditTheaterScreen /> : navigateToLogin() },
         // { path: "/upcoming/add", element: isLoggedIn ? <AddUpcomingMovie /> : navigateToLogin() },
         // { path: "/upcoming", element: isLoggedIn ? <UpcomingMovies /> : navigateToLogin() },

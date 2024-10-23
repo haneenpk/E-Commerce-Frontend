@@ -19,8 +19,8 @@ export const userRoutesToCheck = [
 export const adminRoutesToCheck = [
     "/admin",
     "/admin/",
-    "/admin/profile",
-    "/admin/edit-profile",
+    "/admin/category",
+    "/admin/add-category",
     "/admin/dashboard",
     "/admin/users",
     "/admin/theaters",

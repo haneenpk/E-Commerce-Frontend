@@ -28,16 +28,19 @@ const SignUp = () => {
         e.preventDefault();
 
         try {
+
+            console.log(`${import.meta.env.VITE_AXIOS_BASE_URL}/api/user/register`);
+            
             // Validate formData against the signup schema
             await signupSchema.validate(formData, { abortEarly: false });
 
             setErrors({}); // Clear previous validation errors
 
             // If validation passes, proceed with signup
-            const response = await axios.post(`http://localhost:3000/api/user/register`, formData);
+            const response = await axios.post(`${import.meta.env.VITE_AXIOS_BASE_URL}/api/user/register`, formData);
             console.log(response.data.message);
 
-            navigate(`/verify-otp?purpose=signup&email=${formData.email}`);
+            navigate(`/verify-otp?email=${formData.email}`);
 
         } catch (error) {
             handleFormErrors(error, setErrors, setServerResponse);
