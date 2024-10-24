@@ -58,7 +58,7 @@ const Header = () => {
             className="text-white hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-white"
             activeClassName="border-b-2 border-white"
           >
-            Contact
+            Login
           </NavLink>
         )}
       </div>
@@ -120,14 +120,25 @@ const Header = () => {
             >
               Contact
             </NavLink>
-            <NavLink
-              to="/profile"
-              className="text-white hover:text-gray-300"
-              activeClassName="underline text-white"
-              onClick={() => setShowMenu(false)}
-            >
-              Profile
-            </NavLink>
+            {isUserLoggedIn ? (
+              <div className='flex space-x-4'>
+                <NavLink to="/cart" >
+                  <IoMdCart className="w-9 h-9" color='white' />
+                </NavLink>
+                <NavLink to="/profile" >
+                  <CgProfile className="w-9 h-9" color='white' />
+                </NavLink>
+              </div>
+            ) : (
+              <NavLink
+                to="/login"
+                className="text-white hover:text-gray-300"
+                activeClassName="underline text-white"
+                onClick={() => setShowMenu(false)}
+              >
+                Login
+              </NavLink>
+            )}
           </ul>
         </div>
       )}
