@@ -9,7 +9,7 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <header className="bg-gray-800 py-4 px-6 flex justify-between items-center fixed top-0 w-full z-10 shadow-md">
+    <header className="bg-gray-800 py-4 px-6 flex justify-between items-center fixed top-0 w-full z-50 shadow-md">
       <h1 className="text-white text-2xl font-bold">E-Commerce</h1>
       <div className="hidden md:flex gap-6 items-center">
         <NavLink
