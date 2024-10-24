@@ -104,11 +104,6 @@ const Home = () => {
                   {/* Product Details */}
                   <h3 className="text-lg font-semibold text-gray-800 mb-2">{product.name}</h3>
                   <p className="text-lg font-bold text-blue-600 mb-4">₹{product.price}</p>
-
-                  {/* Add to Cart Button */}
-                  <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors">
-                    Add to Cart
-                  </button>
                 </div>
               </NavLink>
             ))

@@ -1,18 +1,12 @@
 import { lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/users/Home";
-import ShowProduct from "../pages/users/ShowProduct";
+import ShowProduct from "../pages/users/ProductDetail";
 
-// const Profile = lazy(() => import("../pages/Users/Profile"));
-// const EditProfile = lazy(() => import("../pages/Users/EditProfile"));
-// const Upcoming = lazy(() => import("../pages/Users/upcoming"));
-// const ShowTime = lazy(() => import("../pages/Users/showTime"));
-// const ShowSeats = lazy(() => import("../pages/Users/showSeats"));
-// const ShowCheckout = lazy(() => import("../pages/Users/showCheckout"));
-// const Chat = lazy(() => import("../pages/Users/Chat"));
-// const BookingSuccess = lazy(() => import("../pages/Users/BookingSuccess"));
-// const BookingHistory = lazy(() => import("../pages/Users/BookingHistory"));
-// const Wallet = lazy(() => import("../pages/Users/Wallet"));
+const ShoppingCart = lazy(() => import("../pages/users/ShoppingCart"));
+const CheckOutPage = lazy(() => import("../pages/users/CheckOutPage"));
+const AddAddress = lazy(() => import("../pages/users/AddAddress"));
+const OrderHistory = lazy(() => import("../pages/users/OrderHistory"));
 
 import Login from "../pages/users/auth/Login";
 import SignUp from "../pages/users/auth/SignUp";
@@ -26,18 +20,10 @@ const UserRoutes = ({ isLoggedIn }) => {
     const navigateToHome = () => <Navigate to="/" />;
 
     const protectedRoutes = [
-        // { path: "/show", element: isLoggedIn ? <Home decide={"show"} /> : navigateToLogin() },
-        // { path: "/profile", element: isLoggedIn ? <Profile /> : navigateToLogin() },
-        // { path: "/edit-profile", element: isLoggedIn ? <EditProfile /> : navigateToLogin() },
-        // { path: "/upcoming", element: isLoggedIn ? <Upcoming /> : navigateToLogin() },
-        // { path: "/available", element: isLoggedIn ? <ShowTime /> : navigateToLogin() },
-        // { path: "/show/seats", element: isLoggedIn ? <ShowSeats /> : navigateToLogin() },
-        // { path: "/show/checkout", element: isLoggedIn ? <ShowCheckout /> : navigateToLogin() },
-        // { path: "/chat", element: isLoggedIn ? <Chat /> : navigateToLogin() },
-        // { path: "/booking/success", element: isLoggedIn ? <BookingSuccess /> : navigateToLogin() },
-        // { path: "/booking/cancel", element: isLoggedIn ? <Chat /> : navigateToLogin() },
-        // { path: "/booking-history", element: isLoggedIn ? <BookingHistory /> : navigateToLogin() },
-        // { path: "/wallet", element: isLoggedIn ? <Wallet /> : navigateToLogin() },
+        { path: "/cart", element: isLoggedIn ? <ShoppingCart /> : navigateToLogin() },
+        { path: "/checkout", element: isLoggedIn ? <CheckOutPage /> : navigateToLogin() },
+        { path: "/add-address", element: isLoggedIn ? <AddAddress /> : navigateToLogin() },
+        { path: "/order", element: isLoggedIn ? <OrderHistory /> : navigateToLogin() },
     ];
 
     const routes = [

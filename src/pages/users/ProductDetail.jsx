@@ -1,23 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { toast } from 'sonner'
 import Axios from "../../api/shared/instance";
 
 const ShowProduct = () => {
 
+    const isUserLoggedIn = useSelector(state => state.user.isLoggedIn);
+
+    const navigate = useNavigate();
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const productId = queryParams.get("id");
 
     const [product, setProduct] = useState(null);
+    const [displayBtn, setDisplayBtn] = useState(false)
 
     const fetchProduct = async () => {
         try {
-            const response = await Axios.get(`/api/user/get-product/${productId}`);
+            const response = await Axios.get(`/api/user/get-product/${productId}?userId=${localStorage.getItem('userData')}`);
+            console.log(response.data.message);
+            if (response.data.message === 'already exist') {
+                setDisplayBtn(true)
+            }
             setProduct(response.data.data);
         } catch (error) {
             console.error('Error fetching product details:', error);
         }
     };
+
+    const addToCart = async () => {
+        try {
+            if (isUserLoggedIn) {
+
+                const response = await Axios.get(`/api/user/add-cart/${productId}`);
+                fetchProduct();
+                toast.success('Added To Cart');
+            } else {
+                navigate("/login");
+            }
+        } catch (error) {
+            console.error('Error fetching product details:', error);
+        }
+    }
 
     useEffect(() => {
         fetchProduct();
@@ -45,11 +70,11 @@ const ShowProduct = () => {
                     <div className="w-full lg:w-1/2">
                         {/* Product Name */}
                         <h1 className="text-3xl font-bold text-gray-800 mb-4">{product.name}</h1>
-                        
+
                         {/* Brand and Category */}
                         <p className="text-lg text-gray-600 mb-2">Brand: <span className="font-medium">{product.brand}</span></p>
                         <p className="text-lg text-gray-600 mb-6">Category: <span className="font-medium">{product.categoryId?.name || 'Uncategorized'}</span></p>
-                        
+
                         {/* Price */}
                         <p className="text-4xl font-semibold text-blue-600 mb-6">₹{product.price}</p>
 
@@ -63,15 +88,26 @@ const ShowProduct = () => {
                             {product.description}
                         </p>
 
-                        {/* Add to Cart Button */}
-                        <button
-                            disabled={product.stock === 0}
-                            className={`w-full bg-blue-500 text-white py-3 rounded-lg shadow-lg hover:bg-blue-600 transition-colors ${
-                                product.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''
-                            }`}
-                        >
-                            {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
-                        </button>
+                        {displayBtn ? (
+                            <Link to="/cart">
+                            <button                                
+                                disabled={product.stock === 0}
+                                className={`w-full bg-blue-500 text-white py-3 rounded-lg shadow-lg hover:bg-blue-600 transition-colors ${product.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''
+                                    }`}
+                            >
+                                {product.stock > 0 ? 'Go to Cart' : 'Out of Stock'}
+                            </button>
+                            </Link>
+                        ) : (
+                            <button
+                                onClick={addToCart}
+                                disabled={product.stock === 0}
+                                className={`w-full bg-blue-500 text-white py-3 rounded-lg shadow-lg hover:bg-blue-600 transition-colors ${product.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''
+                                    }`}
+                            >
+                                {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
+                            </button>
+                        )}
                     </div>
                 </div>
 

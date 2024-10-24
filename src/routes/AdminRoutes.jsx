@@ -28,13 +28,6 @@ const AdminRoutes = ({ isLoggedIn }) => {
         { path: "/edit-category", element: isLoggedIn ? <EditCategory /> : navigateToLogin() },
         { path: "/product", element: isLoggedIn ? <Product /> : navigateToLogin() },
         { path: "/add-product", element: isLoggedIn ? <AddProduct /> : navigateToLogin() },
-        // { path: "/upcoming", element: isLoggedIn ? <UpcomingMovies /> : navigateToLogin() },
-        // { path: "/upcoming/edit", element: isLoggedIn ? <EditUpcomingMovie /> : navigateToLogin() },
-        // { path: "/profile", element: isLoggedIn ? <Profile /> : navigateToLogin() },
-        // { path: "/edit-profile", element: isLoggedIn ? <EditProfile /> : navigateToLogin() },
-        // { path: "/movie", element: isLoggedIn ? <Movies /> : navigateToLogin() },
-        // { path: "/movie/add", element: isLoggedIn ? <AddMovies /> : navigateToLogin() },
-        // { path: "/movie/edit", element: isLoggedIn ? <EditMovies /> : navigateToLogin() },
 
         // Auth Route
         { path: "/login", element: !isLoggedIn ? <Login role={"admin"} /> : navigateDashboard() },
