@@ -53,7 +53,7 @@ const Product = () => {
     };
 
     return (
-        <div className="container mx-auto py-12 px-4">
+        <div className="container mx-auto py-8 px-4">
 
             {/* Filter Section */}
             <div className="flex justify-between mb-6 gap-x-4">
@@ -118,12 +118,12 @@ const Product = () => {
                     <tbody>
                         {filteredProducts.length > 0 ? (
                             filteredProducts.map((product) => (
-                                <tr key={product._id} className="border-b hover:bg-gray-50 transition duration-200">
+                                <tr key={product._id} className="border-b hover:bg-gray-50 transition duration-200 text-center">
                                     <td className="p-3">
                                         <img
                                             src={`${import.meta.env.VITE_AXIOS_BASE_URL}/${product.images[0]}`}
                                             alt={product.images[0]}
-                                            className="w-16 h-20 object-cover"
+                                            className="w-16 h-20 object-cover rounded-sm shadow-sm"
                                         />
                                     </td>
                                     <td className="p-3">{product.name}</td>

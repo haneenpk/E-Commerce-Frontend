@@ -7,6 +7,8 @@ export const userRoutesToCheck = [
     "/checkout",
     "/add-address",
     "/order",
+    "/profile",
+    "/about-us",
 ];
 
 // List of admin routes where Header and Footer should be displayed
@@ -18,5 +20,6 @@ export const adminRoutesToCheck = [
     "/admin/edit-category",
     "/admin/product",
     "/admin/add-product",
+    "/admin/orders"
 ];
 

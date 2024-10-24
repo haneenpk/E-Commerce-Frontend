@@ -35,13 +35,6 @@ const Header = () => {
         >
           About Us
         </NavLink>
-        <NavLink
-          to="/contact"
-          className="text-white hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-white"
-          activeClassName="border-b-2 border-white"
-        >
-          Contact
-        </NavLink>
         {/* Circle Icon */}
         {isUserLoggedIn ? (
           <div className='flex space-x-4'>
@@ -111,14 +104,6 @@ const Header = () => {
               onClick={() => setShowMenu(false)}
             >
               About Us
-            </NavLink>
-            <NavLink
-              to="/contact"
-              className="text-white hover:text-gray-300"
-              activeClassName="underline text-white"
-              onClick={() => setShowMenu(false)}
-            >
-              Contact
             </NavLink>
             {isUserLoggedIn ? (
               <div className='flex space-x-4'>

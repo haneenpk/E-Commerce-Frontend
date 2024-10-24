@@ -7,6 +7,8 @@ const ShoppingCart = lazy(() => import("../pages/users/ShoppingCart"));
 const CheckOutPage = lazy(() => import("../pages/users/CheckOutPage"));
 const AddAddress = lazy(() => import("../pages/users/AddAddress"));
 const OrderHistory = lazy(() => import("../pages/users/OrderHistory"));
+const Profile = lazy(() => import("../pages/users/Profile"));
+const About = lazy(() => import("../pages/users/AboutUs"));
 
 import Login from "../pages/users/auth/Login";
 import SignUp from "../pages/users/auth/SignUp";
@@ -24,6 +26,8 @@ const UserRoutes = ({ isLoggedIn }) => {
         { path: "/checkout", element: isLoggedIn ? <CheckOutPage /> : navigateToLogin() },
         { path: "/add-address", element: isLoggedIn ? <AddAddress /> : navigateToLogin() },
         { path: "/order", element: isLoggedIn ? <OrderHistory /> : navigateToLogin() },
+        { path: "/profile", element: isLoggedIn ? <Profile /> : navigateToLogin() },
+        { path: "/about-us", element: isLoggedIn ? <About /> : navigateToLogin() },
     ];
 
     const routes = [

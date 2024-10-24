@@ -6,13 +6,8 @@ const AddCategory = lazy(() => import("../pages/admin/AddCategory"));
 const EditCategory = lazy(() => import("../pages/admin/EditCategory"));
 const Product = lazy(() => import("../pages/admin/Product"));
 const AddProduct = lazy(() => import("../pages/admin/AddProduct"));
-// const EditUpcomingMovie = lazy(() => import("../pages/Admin/EditUpcomingMovie"));
-// const UpcomingMovies = lazy(() => import("../pages/Admin/UpcomingMovies"));
-// const Profile = lazy(() => import("../pages/Admin/Profile"));
-// const EditProfile = lazy(() => import("../pages/Admin/EditProfile"));
-// const Movies = lazy(() => import("../pages/Admin/Movies"));
-// const AddMovies = lazy(() => import("../pages/Admin/AddMovie"));
-// const EditMovies = lazy(() => import("../pages/Admin/EditMovie"));
+const Orders = lazy(() => import("../pages/admin/Orders"));
+
 import Login from "../pages/users/auth/Login";
 import ErrorPage from "../pages/ErrorPage";
 
@@ -28,6 +23,7 @@ const AdminRoutes = ({ isLoggedIn }) => {
         { path: "/edit-category", element: isLoggedIn ? <EditCategory /> : navigateToLogin() },
         { path: "/product", element: isLoggedIn ? <Product /> : navigateToLogin() },
         { path: "/add-product", element: isLoggedIn ? <AddProduct /> : navigateToLogin() },
+        { path: "/orders", element: isLoggedIn ? <Orders /> : navigateToLogin() },
 
         // Auth Route
         { path: "/login", element: !isLoggedIn ? <Login role={"admin"} /> : navigateDashboard() },

@@ -43,10 +43,10 @@ const Home = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-10 px-4 md:px-8">
+    <div className="min-h-screen bg-gray-50 pb-10 px-4 md:px-8 pt-4">
       <div className="container mx-auto">
         {/* Title */}
-        <h1 className="text-3xl md:text-4xl font-semibold text-center mb-8 text-gray-800">Explore Our Products</h1>
+        {/* <h1 className="text-3xl md:text-4xl font-semibold text-center mb-8 text-gray-800">Explore Our Products</h1> */}
 
         {/* Search and Filter Section */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-10">
