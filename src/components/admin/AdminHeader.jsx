@@ -19,7 +19,7 @@ const AdminHeader = () => {
         <nav className="flex space-x-10">
           <Link to="/admin/" className="text-white cursor-pointer text-lg">Home</Link>
           <Link to="/admin/category" className="text-white cursor-pointer text-lg">Category</Link>
-          <Link to="/admin/products" className="text-white cursor-pointer text-lg">Products</Link>
+          <Link to="/admin/product" className="text-white cursor-pointer text-lg">Products</Link>
           <Link to="/admin/orders" className="text-white cursor-pointer text-lg">Orders</Link>
         </nav>
 

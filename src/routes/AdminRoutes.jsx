@@ -4,8 +4,8 @@ import Dashboard from "../pages/admin/Dashboard";
 const Category = lazy(() => import("../pages/admin/Category"));
 const AddCategory = lazy(() => import("../pages/admin/AddCategory"));
 const EditCategory = lazy(() => import("../pages/admin/EditCategory"));
-// const EditTheaterScreen = lazy(() => import("../pages/Theater/ViewScreen"));
-// const AddUpcomingMovie = lazy(() => import("../pages/Admin/AddUpcomingMovie"));
+const Product = lazy(() => import("../pages/admin/Product"));
+const AddProduct = lazy(() => import("../pages/admin/AddProduct"));
 // const EditUpcomingMovie = lazy(() => import("../pages/Admin/EditUpcomingMovie"));
 // const UpcomingMovies = lazy(() => import("../pages/Admin/UpcomingMovies"));
 // const Profile = lazy(() => import("../pages/Admin/Profile"));
@@ -26,8 +26,8 @@ const AdminRoutes = ({ isLoggedIn }) => {
         { path: "/category", element: isLoggedIn ? <Category /> : navigateToLogin() },
         { path: "/add-category", element: isLoggedIn ? <AddCategory /> : navigateToLogin() },
         { path: "/edit-category", element: isLoggedIn ? <EditCategory /> : navigateToLogin() },
-        // { path: "/theater-screen/edit", element: isLoggedIn ? <EditTheaterScreen /> : navigateToLogin() },
-        // { path: "/upcoming/add", element: isLoggedIn ? <AddUpcomingMovie /> : navigateToLogin() },
+        { path: "/product", element: isLoggedIn ? <Product /> : navigateToLogin() },
+        { path: "/add-product", element: isLoggedIn ? <AddProduct /> : navigateToLogin() },
         // { path: "/upcoming", element: isLoggedIn ? <UpcomingMovies /> : navigateToLogin() },
         // { path: "/upcoming/edit", element: isLoggedIn ? <EditUpcomingMovie /> : navigateToLogin() },
         // { path: "/profile", element: isLoggedIn ? <Profile /> : navigateToLogin() },

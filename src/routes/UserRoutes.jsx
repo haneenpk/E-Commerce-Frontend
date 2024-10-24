@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/users/Home";
+import ShowProduct from "../pages/users/ShowProduct";
 
 // const Profile = lazy(() => import("../pages/Users/Profile"));
 // const EditProfile = lazy(() => import("../pages/Users/EditProfile"));
@@ -42,6 +43,7 @@ const UserRoutes = ({ isLoggedIn }) => {
     const routes = [
         { path: "/", element: <Home /> },
         { path: "/home", element: <Home /> },
+        { path: "/product-details", element: <ShowProduct /> },
     ];
 
     const authRoutes = [

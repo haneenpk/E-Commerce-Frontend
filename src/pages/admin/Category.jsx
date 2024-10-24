@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Axios from "../../api/shared/instance";
-import { Link } from 'react-router-dom'; // Assuming you're using React Router
+import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 const Category = () => {

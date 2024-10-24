@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Axios from "../../api/shared/instance";
-import { useNavigate } from 'react-router-dom'; // Assuming you're using React Router
+import { useNavigate } from 'react-router-dom'; 
 import { categorySchema } from "../../validations/adminValidations/categorySchema";
 import handleInputChange from "../../utils/formUtils/handleInputChange";
 import handleFormErrors from "../../utils/formUtils/handleFormErrors";
