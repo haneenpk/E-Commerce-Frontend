@@ -53,7 +53,7 @@ const Layout = () => {
             {shouldDisplayHeaderFooter && (
                 userRole === "admin" ? <AdminHeader /> : <Header />
             )}
-            <main className="flex-1" style={{ paddingTop: shouldDisplayHeaderFooter ? 0 : 0 }}>
+            <main className="flex-1" style={{ paddingTop: shouldDisplayHeaderFooter ? 80 : 0 }}>
                 <MainRouter />
             </main>
             {shouldDisplayHeaderFooter && (userRole === "user") && <Footer />}

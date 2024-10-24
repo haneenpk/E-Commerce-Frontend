@@ -67,7 +67,7 @@ const OrderHistory = () => {
     };
 
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto px-5">
             <h1 className="text-center text-2xl font-bold mb-4">Order History</h1>
             {renderOrders()}
         </div>
