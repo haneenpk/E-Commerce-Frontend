@@ -112,49 +112,55 @@ const OrdersPage = () => {
                     <tbody>
                         {filteredOrders.length > 0 ? (
                             filteredOrders.map((order) => (
-                                <tr key={order._id} className="border-b">
+                                <tr key={order?._id} className="border-b">
                                     <td className="p-2">
-                                        {order.user.username}
+                                        {order?.user?.username || 'N/A'}
                                         <br />
-                                        {order.user.email}
+                                        {order?.user?.email || 'N/A'}
                                     </td>
                                     <td className="p-2">
-                                        {order.products.map((product, index) => (
+                                        {order?.products?.map((product, index) => (
                                             <div key={index}>
-                                                {product.isCancelled ? (
+                                                {product?.isCancelled ? (
                                                     <del className="text-red-500">
-                                                        {product.product.name} : {product.quantity}
+                                                        {product?.product?.name || 'Unknown Product'} : {product?.quantity || 0}
                                                     </del>
                                                 ) : (
                                                     <span>
-                                                        {product.product.name} : {product.quantity}
+                                                        {product?.product?.name || 'Unknown Product'} : {product?.quantity || 0}
                                                     </span>
                                                 )}
                                             </div>
-                                        ))}
+                                        )) || 'No products'}
                                     </td>
                                     <td className="p-2">
-                                        {order.deliveryAddress.name},<br />
-                                        {order.deliveryAddress.mobile},<br />
-                                        {order.deliveryAddress.address},<br />
-                                        {order.deliveryAddress.city},<br />
-                                        {order.deliveryAddress.district},<br />
-                                        {order.deliveryAddress.state},<br />
-                                        {order.deliveryAddress.country}
+                                        {order?.deliveryAddress ? (
+                                            <>
+                                                {order.deliveryAddress.name || 'N/A'},<br />
+                                                {order.deliveryAddress.mobile || 'N/A'},<br />
+                                                {order.deliveryAddress.address || 'N/A'},<br />
+                                                {order.deliveryAddress.city || 'N/A'},<br />
+                                                {order.deliveryAddress.district || 'N/A'},<br />
+                                                {order.deliveryAddress.state || 'N/A'},<br />
+                                                {order.deliveryAddress.country || 'N/A'}
+                                            </>
+                                        ) : (
+                                            'No address available'
+                                        )}
                                     </td>
-                                    <td className="p-2">₹{order.totalAmount}</td>
+                                    <td className="p-2">₹{order?.totalAmount || 0}</td>
                                     <td className="p-2">
-                                        {order.status === "Delivered" ? (
+                                        {order?.status === "Delivered" ? (
                                             <span className="text-green-500">Delivered</span>
                                         ) : (
                                             <div className="relative inline-block text-left">
                                                 <button
                                                     className="bg-red-500 text-white p-2 w-28 rounded "
-                                                    onClick={() => toggleDropdown(order._id)}
+                                                    onClick={() => toggleDropdown(order?._id)}
                                                 >
-                                                    {order.status}
+                                                    {order?.status || 'Unknown'}
                                                 </button>
-                                                {openDropdownId === order._id && (
+                                                {openDropdownId === order?._id && (
                                                     <div className="absolute right-0 mt-2 w-36 bg-white shadow-lg rounded z-10">
                                                         <button
                                                             className="block px-4 py-2 w-full text-sm text-gray-700 hover:bg-gray-100"
@@ -179,7 +185,7 @@ const OrdersPage = () => {
                                             </div>
                                         )}
                                     </td>
-                                    <td className="p-2">{order.paymentMethod}</td>
+                                    <td className="p-2">{order?.paymentMethod || 'N/A'}</td>
                                 </tr>
                             ))
                         ) : (
