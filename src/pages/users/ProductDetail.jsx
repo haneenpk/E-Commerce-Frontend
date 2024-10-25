@@ -3,6 +3,7 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { toast } from 'sonner'
 import Axios from "../../api/shared/instance";
+import { Button } from "@material-tailwind/react";
 
 const ShowProduct = () => {
 
@@ -53,7 +54,7 @@ const ShowProduct = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 py-10 px-4 md:px-8">
+        <div className="py-10 px-4 md:px-8">
             <div className="container mx-auto">
                 {/* Product Section */}
                 <div className="flex flex-col lg:flex-row gap-10 lg:px-14">
@@ -67,7 +68,7 @@ const ShowProduct = () => {
                     </div>
 
                     {/* Product Details */}
-                    <div className="w-full lg:w-1/2">
+                    <div className="w-full lg:w-1/2 bg-white shadow-md p-6 rounded-md">
                         {/* Product Name */}
                         <h1 className="text-3xl font-bold text-gray-800 mb-4">{product.name}</h1>
 
@@ -90,23 +91,23 @@ const ShowProduct = () => {
 
                         {displayBtn ? (
                             <Link to="/cart">
-                            <button                                
-                                disabled={product.stock === 0}
-                                className={`w-full bg-blue-500 text-white py-3 rounded-lg shadow-lg hover:bg-blue-600 transition-colors ${product.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''
-                                    }`}
-                            >
-                                {product.stock > 0 ? 'Go to Cart' : 'Out of Stock'}
-                            </button>
+                                <Button
+                                    disabled={product.stock === 0}
+                                    className={`w-full ${product.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''
+                                        }`}
+                                >
+                                    {product.stock > 0 ? 'Go to Cart' : 'Out of Stock'}
+                                </Button>
                             </Link>
                         ) : (
-                            <button
+                            <Button
                                 onClick={addToCart}
                                 disabled={product.stock === 0}
-                                className={`w-full bg-blue-500 text-white py-3 rounded-lg shadow-lg hover:bg-blue-600 transition-colors ${product.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''
+                                className={`w-full ${product.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''
                                     }`}
                             >
                                 {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
-                            </button>
+                            </Button>
                         )}
                     </div>
                 </div>

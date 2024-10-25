@@ -3,6 +3,7 @@ import Axios from "../../api/shared/instance";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner'
+import { Breadcrumbs, Button } from "@material-tailwind/react";
 
 const CheckoutPage = () => {
 
@@ -62,10 +63,24 @@ const CheckoutPage = () => {
     }
 
     return (
-        <div className="container mx-auto py-8 px-4 lg:px-0">
+        <div className="container mx-auto pb-5 px-8 lg:px-0">
+            <Breadcrumbs className='mb-3'>
+                <NavLink to="/" className="opacity-60">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                    </svg>
+                </NavLink>
+                <NavLink to="/cart">Cart</NavLink>
+                <NavLink to="/checkout">Checkout</NavLink>
+            </Breadcrumbs>
             <div className="flex flex-wrap">
                 {/* Cart Items */}
-                <div className="w-full lg:w-2/3 px-4 mb-6 lg:mb-0">
+                <div className="w-full lg:w-2/3 mb-6 lg:mb-0">
                     <div className="bg-white shadow-md rounded-lg p-6">
                         <table className="table-auto w-full mb-4">
                             <thead>
@@ -81,7 +96,7 @@ const CheckoutPage = () => {
                                 {userData.cart.map((item, index) => (
                                     <tr key={index} className="border-b">
                                         <td className="py-2 px-4">
-                                            <img src={`${import.meta.env.VITE_AXIOS_BASE_URL}/${item.product.images[0]}`} alt={item.product.name} className="rounded-sm w-12 h-12 object-cover" />
+                                            <img src={`${import.meta.env.VITE_AXIOS_BASE_URL}/${item.product.images[0]}`} alt={item.product.name} className="rounded-sm w-16 h-16 object-cover" />
                                         </td>
                                         <td className="py-2 px-4">{item.product.name}</td>
                                         <td className="py-2 px-4 text-right">₹{item.product.price}</td>
@@ -107,13 +122,13 @@ const CheckoutPage = () => {
                             )}
 
                             {/* Button to trigger Address Modal */}
-                            <button
+                            <Button
                                 type="button"
-                                className="bg-blue-500 text-white mt-2 py-1 px-4 rounded"
+                                className="bg-blue-500 text-white mt-2 "
                                 onClick={() => setIsAddressModalOpen(true)}
                             >
                                 Select Address
-                            </button>
+                            </Button>
                         </div>
 
                         {/* Address Modal */}
@@ -136,8 +151,8 @@ const CheckoutPage = () => {
                                                 <div key={index} className="mb-4 p-4 border">
                                                     <h5>Address {index + 1}</h5>
                                                     <p>{`${address.name}, ${address.city}, ${address.state}, ${address.country}`}</p>
-                                                    <button
-                                                        className="bg-green-500 text-white py-1 px-2 rounded mt-2"
+                                                    <Button
+                                                        className="bg-green-500 mt-2"
                                                         onClick={() => {
                                                             // setSelectAddress(address);
                                                             handleSelectedAddress(address._id)
@@ -145,7 +160,7 @@ const CheckoutPage = () => {
                                                         }}
                                                     >
                                                         Select
-                                                    </button>
+                                                    </Button>
                                                 </div>
                                             ))
                                         ) : (
@@ -157,10 +172,14 @@ const CheckoutPage = () => {
                                     <div className="mt-4">
                                         <NavLink
                                             to="/add-address"
-                                            className="bg-blue-500 text-white py-2 px-4 rounded-lg w-full text-center block"
+
                                             onClick={() => setIsAddressModalOpen(false)} // Close modal on navigation
                                         >
-                                            Add New Address
+                                            <Button className="bg-blue-500 text-white w-full block">
+
+                                                Add New Address
+
+                                            </Button>
                                         </NavLink>
                                     </div>
                                 </div>
@@ -200,7 +219,7 @@ const CheckoutPage = () => {
                                 </label>
                                 <label className="block mb-2">
                                     <input
-                                    disabled
+                                        disabled
                                         type="radio"
                                         name="paymentOptions"
                                         value="Razorpay"
@@ -215,17 +234,17 @@ const CheckoutPage = () => {
 
                         {/* Confirm Order Button */}
                         {errorMessage && <p className="text-red-500 text-center mb-4">{errorMessage}</p>}
-                        <button
-                            className="bg-blue-500 text-white py-2 px-6 rounded-lg w-full"
+                        <Button
+                            className="w-full"
                             onClick={handleConfirmOrder}
                         >
                             Confirm Order
-                        </button>
+                        </Button>
 
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

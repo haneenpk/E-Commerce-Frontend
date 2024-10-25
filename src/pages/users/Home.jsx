@@ -92,8 +92,8 @@ const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-              <NavLink to={`/product-details?id=${product._id}`}>
-                <div key={product._id} className="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <NavLink key={product._id} to={`/product-details?id=${product._id}`}>
+                <div className="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                   {/* Product Image */}
                   <img
                     src={`${import.meta.env.VITE_AXIOS_BASE_URL}/${product.images[0]}`}

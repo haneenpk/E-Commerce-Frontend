@@ -57,9 +57,9 @@ const Login = ({ role }) => {
 
                 // Navigate after state updates
                 if (role === "admin") {
-                    navigate("/admin");
+                    navigate("/admin/dashboard");
                 } else {
-                    navigate("/home");
+                    navigate("/");
                 }
             } else {
                 // Handle server response errors

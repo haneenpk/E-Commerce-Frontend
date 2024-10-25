@@ -6,12 +6,14 @@ import { NavLink } from 'react-router-dom';
 const Category = () => {
     const [query, setQuery] = useState('');
     const [categories, setCategories] = useState([]);
+    const [originalCategories, setOriginalCategories] = useState([]); // Store the original list of categories
 
+    // Fetch categories from the server
     const fetchCategory = async () => {
         try {
             const response = await Axios.get(`/api/admin/get-category`);
-            console.log(response);
             setCategories(response.data.data);
+            setOriginalCategories(response.data.data); // Store the original list
         } catch (error) {
             console.log(error);
         }
@@ -22,15 +24,16 @@ const Category = () => {
     }, []);
 
     const handleSearch = (e) => {
-        e.preventDefault();
+        const searchQuery = e.target.value;
+        setQuery(searchQuery);
 
-        if (query.trim() === '') {
+        if (searchQuery.trim() === '') {
             // If the input is empty, reset to the original categories
             setCategories(originalCategories);
         } else {
             // Filter categories based on the query
             const filteredCategories = originalCategories.filter(category =>
-                category.name.toLowerCase().includes(query.toLowerCase())
+                category.name.toLowerCase().includes(searchQuery.toLowerCase())
             );
 
             setCategories(filteredCategories);
@@ -38,11 +41,9 @@ const Category = () => {
     };
 
     const deleteCategory = async (id) => {
-        console.log(id);
         try {
-            const response = await Axios.delete(`/api/admin/delete-catagory/${id}`);
-            console.log(response);
-            fetchCategory();
+            await Axios.delete(`/api/admin/delete-catagory/${id}`);
+            fetchCategory(); // Refetch categories after deletion
         } catch (error) {
             console.log(error);
         }
@@ -50,27 +51,17 @@ const Category = () => {
 
     return (
         <div className="container mx-auto px-4 py-6 ">
-            {/* Search Form */}
-            <form onSubmit={handleSearch} className="mb-6">
-                <div className="flex flex-wrap">
-                    <div className="flex-1 pr-2">
-                        <input
-                            type="text"
-                            name="query"
-                            value={query}
-                            onChange={(e) => setQuery(e.target.value)}
-                            className="form-control w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-500"
-                            placeholder="Search..."
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className="btn btn-primary w-full md:w-auto md:ml-2 bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-700"
-                    >
-                        Search
-                    </button>
-                </div>
-            </form>
+            {/* Search Input */}
+            <div className="mb-6">
+                <input
+                    type="text"
+                    name="query"
+                    value={query}
+                    onChange={handleSearch}  // Real-time filtering
+                    className="form-control w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-500"
+                    placeholder="Search categories..."
+                />
+            </div>
 
             {/* Add Category Button */}
             <Link to="/admin/add-category">
@@ -81,7 +72,7 @@ const Category = () => {
 
             {/* Categories Table */}
             <div className="card mb-6 shadow-md border rounded-lg bg-white">
-                <h5 className="card-header  text-lg font-semibold p-4">Categories</h5>
+                <h5 className="card-header text-lg font-semibold p-4">Categories</h5>
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
                         <thead>

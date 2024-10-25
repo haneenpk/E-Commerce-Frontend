@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Axios from "../../api/shared/instance";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
+import { Breadcrumbs, Button } from "@material-tailwind/react";
 
 const AddAddress = () => {
     const navigate = useNavigate();
@@ -41,7 +42,7 @@ const AddAddress = () => {
         try {
             // Make POST request to add address
             console.log(formData);
-            
+
             await Axios.post('/api/user/add-address-checkout', formData);
 
             // Redirect to the checkout page
@@ -54,16 +55,30 @@ const AddAddress = () => {
 
     return (
         <section className="bg-gray-100 p-4">
+            <Breadcrumbs className='mb-3'>
+                <NavLink to="/" className="opacity-60">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                    </svg>
+                </NavLink>
+                <NavLink to="/cart">Cart</NavLink>
+                <NavLink to="/checkout">Checkout</NavLink>
+                <NavLink to="/add-address">Add Address</NavLink>
+            </Breadcrumbs>
             <div className="container mx-auto mb-4">
-                <h2 className="text-2xl font-semibold mb-4">Add Address</h2>
                 <div className="flex justify-center">
                     <div className="w-full max-w-lg bg-white p-6 rounded-lg shadow-md">
-                        <button
+                        <Button
                             onClick={() => navigate('/checkout')}
-                            className="bg-blue-500 text-white px-4 py-2 rounded mb-4"
+                            className="text-white px-4 py-2 rounded mb-4"
                         >
                             Back to Checkout
-                        </button>
+                        </Button>
 
                         <form onSubmit={handleSubmit}>
                             <div className="mb-4">
@@ -179,9 +194,9 @@ const AddAddress = () => {
                                     {errorMessage}
                                 </div>
                             )}
-                            <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded w-full">
+                            <Button type="submit" className="bg-green-500 w-full">
                                 Add Address
-                            </button>
+                            </Button>
                         </form>
                     </div>
                 </div>

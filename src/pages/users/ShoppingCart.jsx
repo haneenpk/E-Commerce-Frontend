@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Axios from '../../api/shared/instance';
 import { NavLink } from 'react-router-dom';
+import { Breadcrumbs, Button } from "@material-tailwind/react";
 
 const ShoppingCart = () => {
   const [cartData, setCartData] = useState({ cart: [], totalCartAmount: 0 });
@@ -67,7 +68,20 @@ const ShoppingCart = () => {
   }
 
   return (
-    <div className="bg-gray-100 p-8">
+    <div className="bg-gray-100 px-8 pb-5">
+      <Breadcrumbs className='mb-3'>
+        <NavLink to="/" className="opacity-60">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+          </svg>
+        </NavLink>
+        <NavLink to="/cart">Cart</NavLink>
+      </Breadcrumbs>
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
         {deleteError && (
@@ -115,7 +129,7 @@ const ShoppingCart = () => {
                           type="number"
                           value={item.quantity}
                           min="1"
-                          className="w-12 text-center border"
+                          className="w-12 p-1 text-center border"
                           disabled
                         />
                         <button
@@ -156,8 +170,8 @@ const ShoppingCart = () => {
                 <span>Total:</span>
                 <span>₹{cartData.totalCartAmount}</span>
               </div>
-              <NavLink to={`/checkout`} className="mt-4 block bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700">
-                Proceed to Checkout
+              <NavLink to={`/checkout`} className="mt-4 block text-white text-center py-2 ">
+                <Button>Proceed to Checkout</Button>
               </NavLink>
             </div>
           </>

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Axios from "../../api/shared/instance";
 import { Stepper, Step, Typography } from "@material-tailwind/react";
+import { Breadcrumbs } from "@material-tailwind/react";
+import { NavLink } from 'react-router-dom';
 
 const OrderHistory = () => {
     const [orders, setOrders] = useState([]);
-    const [activeStep, setActiveStep] = useState(0);
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -22,13 +23,13 @@ const OrderHistory = () => {
 
     const renderOrders = () => {
         return orders.map((order) => (
-            <div key={order._id} className="flex flex-col lg:flex-row border p-4 mb-3 bg-white rounded-lg shadow-lg">
-                <div className="lg:w-1/3 w-full flex justify-center lg:justify-start mb-5 lg:mb-0">
+            <div key={`${order._id}-${order.orderedProducts[0]._id}`} className="flex flex-col lg:flex-row border p-4 mb-3 bg-white rounded-lg shadow-lg">
+                <div className="lg:w-1/3 w-full flex justify-center lg:justify-start items-center mb-5 lg:mb-0">
                     <a href={`/productDetail?id=${order.orderedProducts[0]._id}`}>
                         <img
                             src={`${import.meta.env.VITE_AXIOS_BASE_URL}/${order.orderedProducts[0].images[0]}`}
                             alt="Order Product"
-                            className="w-40 h-40 object-cover rounded-md shadow-md"
+                            className="w-60 h-60 object-cover rounded-md shadow-md"
                         />
                     </a>
                 </div>
@@ -53,35 +54,36 @@ const OrderHistory = () => {
                         </p>
                     </div>
 
-                    <div className="mt-10">
+                    <div className="mt-10 mr-8">
                         <Stepper
-                            activeStep={order.status === "Processing" ? 0 : order.status === "Shipped" ? 1 : 2}
+                            color='green'
+                            activeStep={order.status === "Delivered" ? 3 : order.status === "Shipped" ? 1 : 0}
                         >
-                            <Step>
+                            <Step color='green'>
                                 <div className="text-center -mt-16">
                                     <Typography
                                         variant="h6"
-                                        color={activeStep === 0 ? "blue-gray" : "gray"}
+                                        color={order.status ? "amber" : "gray"}
                                     >
                                         Processing
                                     </Typography>
                                 </div>
                             </Step>
-                            <Step>
+                            <Step color='green'>
                                 <div className="text-center -mt-16">
                                     <Typography
                                         variant="h6"
-                                        color={activeStep === 1 ? "blue-gray" : "gray"}
+                                        color={order.status === "Shipped" || order.status === "Delivered" ? "green" : "gray"}
                                     >
                                         Shipped
                                     </Typography>
                                 </div>
                             </Step>
-                            <Step>
+                            <Step color='green'>
                                 <div className="text-center -mt-16">
                                     <Typography
                                         variant="h6"
-                                        color={activeStep === 2 ? "blue-gray" : "gray"}
+                                        color={order.status === "Delivered" ? "green" : "gray"}
                                     >
                                         Delivered
                                     </Typography>
@@ -95,8 +97,20 @@ const OrderHistory = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 lg:px-20">
-            <h1 className="text-center text-2xl lg:text-3xl font-bold mb-6">Order History</h1>
+        <div className="container mx-auto px-4 lg:px-20 pb-5">
+            <Breadcrumbs className='mb-3'>
+                <NavLink to="/" className="opacity-60">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                    </svg>
+                </NavLink>
+                <NavLink to="/order">My Order</NavLink>
+            </Breadcrumbs>
             {orders.length > 0 ? renderOrders() : <p className="text-center">No orders found.</p>}
         </div>
     );

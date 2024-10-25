@@ -20,6 +20,7 @@ export const adminRoutesToCheck = [
     "/admin/edit-category",
     "/admin/product",
     "/admin/add-product",
-    "/admin/orders"
+    "/admin/orders",
+    "/admin/dashboard",
 ];
 

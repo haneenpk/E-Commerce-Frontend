@@ -9,13 +9,12 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <header className="bg-gray-800 py-4 px-6 flex justify-between items-center fixed top-0 w-full z-50 shadow-md">
+    <header className="bg-[#003135] py-4 px-6 flex justify-between items-center fixed top-0 w-full z-50 shadow-md">
       <h1 className="text-white text-2xl font-bold">E-Commerce</h1>
       <div className="hidden md:flex gap-6 items-center">
         <NavLink
           to="/"
           className="text-white hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-white"
-          activeClassName="border-b-2 border-white"
         >
           Home
         </NavLink>
@@ -23,7 +22,7 @@ const Header = () => {
           <NavLink
             to="/order"
             className="text-white hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-white"
-            activeClassName="border-b-2 border-white"
+
           >
             My Order
           </NavLink>
@@ -31,7 +30,6 @@ const Header = () => {
         <NavLink
           to="/about-us"
           className="text-white hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-white"
-          activeClassName="border-b-2 border-white"
         >
           About Us
         </NavLink>

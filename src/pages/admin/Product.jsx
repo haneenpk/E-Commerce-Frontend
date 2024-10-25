@@ -53,7 +53,7 @@ const Product = () => {
     };
 
     return (
-        <div className="container mx-auto py-8 px-4">
+        <div className="container py-8 px-8">
 
             {/* Filter Section */}
             <div className="flex justify-between mb-6 gap-x-4">
