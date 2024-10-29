@@ -71,7 +71,7 @@ const OrdersPage = () => {
     };
 
     return (
-        <div className="p-5 px-10">
+        <div className="p-8">
             {/* Filters Section */}
             <div className="mb-4">
                 <form className="flex flex-col sm:flex-row gap-4">

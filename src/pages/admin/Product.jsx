@@ -54,7 +54,7 @@ const Product = () => {
     };
 
     return (
-        <div className="container py-8 px-8">
+        <div className="p-8">
 
             {/* Filter Section */}
             <div className="flex justify-between mb-6 gap-x-4">
@@ -105,7 +105,7 @@ const Product = () => {
 
             {/* Products Table */}
             <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
-                <table className="table-auto w-full divide-y">
+                <table className="table-auto w-full">
                     <thead>
                         <tr className="text-gray-700">
                             <th className="p-3">Product Image</th>

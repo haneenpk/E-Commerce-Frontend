@@ -53,7 +53,7 @@ const Category = () => {
     }
 
     return (
-        <div className="container mx-auto px-4 py-6 ">
+        <div className="p-8">
             {/* Search Input */}
             <div className="mb-6">
                 <input
