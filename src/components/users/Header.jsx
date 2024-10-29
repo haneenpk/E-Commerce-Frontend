@@ -10,7 +10,11 @@ const Header = () => {
 
   return (
     <header className="bg-[#003135] py-4 px-6 flex justify-between items-center fixed top-0 w-full z-50 shadow-md">
-      <h1 className="text-white text-2xl font-bold">E-Commerce</h1>
+      <NavLink
+        to="/"
+      >
+        <h1 className="text-white text-2xl font-bold">E-Commerce</h1>
+      </NavLink>
       <div className="hidden md:flex gap-6 items-center">
         <NavLink
           to="/"

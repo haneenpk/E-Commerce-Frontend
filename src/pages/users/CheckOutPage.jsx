@@ -78,10 +78,10 @@ const CheckoutPage = () => {
                 <NavLink to="/cart">Cart</NavLink>
                 <NavLink to="/checkout">Checkout</NavLink>
             </Breadcrumbs>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap ">
                 {/* Cart Items */}
                 <div className="w-full lg:w-2/3 mb-6 lg:mb-0">
-                    <div className="bg-white shadow-md rounded-lg p-6">
+                    <div className="bg-white shadow-md rounded-lg p-6 overflow-x-auto">
                         <table className="table-auto w-full mb-4">
                             <thead>
                                 <tr className="bg-gray-100">

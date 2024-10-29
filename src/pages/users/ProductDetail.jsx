@@ -54,7 +54,7 @@ const ShowProduct = () => {
     }
 
     return (
-        <div className="py-10 px-4 md:px-8">
+        <div className="pb-5 md:py-10 px-4 md:px-8">
             <div className="container mx-auto">
                 {/* Product Section */}
                 <div className="flex flex-col lg:flex-row gap-10 lg:px-14">
@@ -63,7 +63,7 @@ const ShowProduct = () => {
                         <img
                             src={`${import.meta.env.VITE_AXIOS_BASE_URL}/${product.images[0]}`}
                             alt={product.name}
-                            className="w-1/2 h-96 object-cover rounded-lg shadow-lg"
+                            className="w-full lg:w-1/2 h-96 object-cover rounded-lg shadow-lg"
                         />
                     </div>
 

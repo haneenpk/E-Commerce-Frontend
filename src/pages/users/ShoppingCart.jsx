@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Axios from '../../api/shared/instance';
 import { NavLink } from 'react-router-dom';
 import { Breadcrumbs, Button } from "@material-tailwind/react";
+import { MdDeleteForever } from "react-icons/md";
 
 const ShoppingCart = () => {
   const [cartData, setCartData] = useState({ cart: [], totalCartAmount: 0 });
@@ -82,7 +83,7 @@ const ShoppingCart = () => {
         </NavLink>
         <NavLink to="/cart">Cart</NavLink>
       </Breadcrumbs>
-      <div className="bg-white p-6 rounded-lg shadow-lg">
+      <div className="bg-white p-6 rounded-lg shadow-lg overflow-x-auto">
         <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
         {deleteError && (
           <div className="text-red-500 mb-4">{deleteError}</div>
@@ -97,23 +98,28 @@ const ShoppingCart = () => {
                   <th className="py-2 px-4">Price</th>
                   <th className="py-2 px-4">Quantity</th>
                   <th className="">Total</th>
-                  <th className="py-2 px-4">Action</th>
                 </tr>
               </thead>
               <tbody>
                 {cartData.cart.map((item) => (
                   <tr key={item._id} className="border-b text-center hover:bg-gray-50">
-                    <td className="py-4 px-4">
+                    <td className="py-4 px-4 flex">
+                      <button
+                        onClick={(e) => handleDeleteItem(e, item._id)}
+                        className="text-red-600 hover:text-red-800 mr-2"
+                      >
+                        <MdDeleteForever size={26} />
+                      </button>
                       <img
                         src={`${import.meta.env.VITE_AXIOS_BASE_URL}/${item.product.images[0]}`}
                         alt={item.product.name}
-                        className="w-20 h-20 object-cover"
+                        className="w-20 h-20 object-cover shadow-md"
                       />
                     </td>
                     <td className="py-4 px-4">
-                      <a href={`/productDetail?id=${item.product._id}`} className="text-gray-700 hover:underline">
+                      <NavLink to={`/product-details?id=${item.product._id}`} className="text-gray-700 hover:underline">
                         {item.product.name}
-                      </a>
+                      </NavLink>
                     </td>
                     <td className="py-4 px-4">₹{item.product.price}</td>
                     <td className="w-44">
@@ -147,14 +153,6 @@ const ShoppingCart = () => {
                       )}
                     </td>
                     <td className="w-32">₹<span>{item.total}</span></td>
-                    <td className="py-4 px-4">
-                      <button
-                        onClick={(e) => handleDeleteItem(e, item._id)}
-                        className="text-red-600 hover:text-red-800"
-                      >
-                        Delete
-                      </button>
-                    </td>
                   </tr>
                 ))}
               </tbody>
