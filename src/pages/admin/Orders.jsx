@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../api/shared/instance";
 import { toast } from 'sonner'
+import { Select, Option } from "@material-tailwind/react";
 
 const OrdersPage = () => {
     const [orders, setOrders] = useState([]);
@@ -96,7 +97,7 @@ const OrdersPage = () => {
             </div>
 
             {/* Orders Table */}
-            <div className="bg-white shadow-md rounded p-4">
+            <div className="bg-white shadow-md rounded-lg p-4 overflow-x-auto">
                 <h2 className="text-xl font-bold mb-4">Orders</h2>
                 <table className="min-w-full bg-white">
                     <thead>
@@ -153,35 +154,12 @@ const OrdersPage = () => {
                                         {order?.status === "Delivered" ? (
                                             <span className="text-green-500">Delivered</span>
                                         ) : (
-                                            <div className="relative inline-block text-left">
-                                                <button
-                                                    className="bg-red-500 text-white p-2 w-28 rounded "
-                                                    onClick={() => toggleDropdown(order?._id)}
-                                                >
-                                                    {order?.status || 'Unknown'}
-                                                </button>
-                                                {openDropdownId === order?._id && (
-                                                    <div className="absolute right-0 mt-2 w-36 bg-white shadow-lg rounded z-10">
-                                                        <button
-                                                            className="block px-4 py-2 w-full text-sm text-gray-700 hover:bg-gray-100"
-                                                            onClick={() => updateStatus(order._id, "Processing")}
-                                                        >
-                                                            Processing
-                                                        </button>
-                                                        <button
-                                                            className="block px-4 py-2 w-full text-sm text-gray-700 hover:bg-gray-100"
-                                                            onClick={() => updateStatus(order._id, "Shipped")}
-                                                        >
-                                                            Shipped
-                                                        </button>
-                                                        <button
-                                                            className="block px-4 py-2 w-full text-sm text-gray-700 hover:bg-gray-100"
-                                                            onClick={() => updateStatus(order._id, "Delivered")}
-                                                        >
-                                                            Delivered
-                                                        </button>
-                                                    </div>
-                                                )}
+                                            <div className=" inline-block text-left">
+                                                <Select color="blue" label="Select Status" value={order?.status || 'Unknown'}>
+                                                    <Option onClick={() => updateStatus(order._id, "Processing")}>Processing</Option>
+                                                    <Option onClick={() => updateStatus(order._id, "Shipped")}>Shipped</Option>
+                                                    <Option onClick={() => updateStatus(order._id, "Delivered")}>Delivered</Option>
+                                                </Select>
                                             </div>
                                         )}
                                     </td>

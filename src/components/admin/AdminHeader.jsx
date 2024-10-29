@@ -146,7 +146,7 @@ const Header = () => {
       </button>
 
       {showMenu && (
-        <div className="md:hidden absolute bg-gray-800 top-full left-0 right-0 py-2 px-4">
+        <div className="md:hidden absolute bg-[#024950] top-full left-0 right-0 py-2 px-4">
           <ul className="flex flex-col gap-2">
             <NavLink
               to="/admin/"

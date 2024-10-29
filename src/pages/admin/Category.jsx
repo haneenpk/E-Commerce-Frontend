@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Axios from "../../api/shared/instance";
 import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import { MdDeleteForever } from "react-icons/md";
+import { CiEdit } from "react-icons/ci";
+import { Button } from "@material-tailwind/react";
 
 const Category = () => {
     const [query, setQuery] = useState('');
@@ -65,9 +68,9 @@ const Category = () => {
 
             {/* Add Category Button */}
             <Link to="/admin/add-category">
-                <button className="mb-4 bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-700">
+                <Button className="mb-4 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition duration-200">
                     Add Category
-                </button>
+                </Button>
             </Link>
 
             {/* Categories Table */}
@@ -88,12 +91,12 @@ const Category = () => {
                                     <tr key={category._id} className="hover:bg-gray-100">
                                         <td className="px-4 py-2 font-semibold">{index + 1}</td>
                                         <td className="px-4 py-2">{category.name}</td>
-                                        <td className="px-4 py-2">
+                                        <td className="px-4 py-2 flex">
                                             <NavLink to={`/admin/edit-category?id=${category._id}`} className="text-blue-500 hover:underline mr-2">
-                                                Edit
+                                                <CiEdit size={26} />
                                             </NavLink>
                                             <button onClick={() => deleteCategory(category._id)} className="text-red-500 hover:underline">
-                                                Delete
+                                                <MdDeleteForever size={26} />
                                             </button>
                                         </td>
                                     </tr>

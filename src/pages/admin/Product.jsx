@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from "../../api/shared/instance";
+import { Button } from "@material-tailwind/react";
 
 const Product = () => {
     const [category, setCategory] = useState('');
@@ -97,16 +98,16 @@ const Product = () => {
             </div>
 
             <Link to="/admin/add-product">
-                <button className="bg-green-600 text-white p-3 mb-8 rounded-lg shadow hover:bg-green-700 transition duration-200">
+                <Button className="bg-blue-600 text-white mb-8 rounded-lg shadow hover:bg-blue-700 transition duration-200">
                     Add Product
-                </button>
+                </Button>
             </Link>
 
             {/* Products Table */}
-            <div className="overflow-x-auto">
-                <table className="table-auto w-full bg-white shadow-lg rounded-lg">
+            <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
+                <table className="table-auto w-full divide-y">
                     <thead>
-                        <tr className="bg-gray-100 text-gray-700">
+                        <tr className="text-gray-700">
                             <th className="p-3">Product Image</th>
                             <th className="p-3">Product Name</th>
                             <th className="p-3">Brand</th>
