@@ -87,9 +87,8 @@ const AddProduct = () => {
         </NavLink>
         <NavLink to="/admin/add-product">Add Product</NavLink>
       </Breadcrumbs>
-      <div className='flex items-center justify-center '>
-
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg w-1/2">
+      <div className='flex items-center justify-center'>
+        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
           <NavLink to="/admin/product" >
             <Button className="bg-blue-600 text-white rounded-lg mb-4 block text-center hover:bg-blue-700 transition duration-200">
               Back to Products

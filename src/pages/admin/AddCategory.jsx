@@ -51,9 +51,7 @@ const AddCategory = () => {
                 <NavLink to="/admin/add-category">Add Category</NavLink>
             </Breadcrumbs>
             <div className='flex items-center justify-center'>
-
-
-                <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-sm">
+                <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg">
                     <h2 className="text-2xl font-semibold text-center text-gray-700 mb-6">Add New Category</h2>
 
                     <form onSubmit={handleSubmit}>
